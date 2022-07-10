@@ -185,6 +185,7 @@ Editar = (i) => {
     divApp.className = "block";
     ocultar();
 
+
     let html = `<div class="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
   <div class="bg-white px-16 py-14 rounded-md text-center">
     <h1 class="text-xl mb-4 font-bold text-slate-500">Vista Modificación</h1>`;
@@ -269,7 +270,7 @@ Editar = (i) => {
           } >
             Estudiante
           </input>
-          <input class="px-10" type="radio" name="tipo_persona3"  id="tipo_persona3" value="profesor"  ${
+          <input class="px-10" type="radio" name="tipo_persona3"  id="tipo_persona4" value="profesor"  ${
               registros[i]["tipo_persona2"] ? `checked` : ""
           } >
             Profesor
@@ -277,66 +278,66 @@ Editar = (i) => {
         </td>
       </li>
 
-      <li class="text-m - font-bold text-slate-600" >
-        ${
-            registros[i]["tipo_persona"] != undefined
-                ? `
+        <li id="edit_semestre" class="text-m - font-bold text-slate-600 ${registros[i]["tipo_persona"] != undefined ? "" : "hidden"}" >
             Semestre 
             <select name="semestre" id="semestre2" class="caja">
-              <option value="I" ${
-                  registros[i]["semestre"] === "I" ? `selected` : ""
-              }>
-                I
-              </option>
+                <option value="I" ${
+                    registros[i]["semestre"] === "I" ? `selected` : ""
+                }>
+                    I
+                </option>
 
-        <option value="II"${
-            registros[i]["semestre"] === "II" ? `selected` : ""
-        }>II</option>
+                <option value="II"${
+                    registros[i]["semestre"] === "II" ? `selected` : ""
+                }>II</option>
 
-        <option value="III"${
-            registros[i]["semestre"] === "III" ? `selected` : ""
-        }>III</option>
+                <option value="III"${
+                    registros[i]["semestre"] === "III" ? `selected` : ""
+                }>III</option>
 
-       <option value="IV"${
-           registros[i]["semestre"] === "IV" ? `selected` : ""
-       }>IV</option>
+                <option value="IV"${
+                    registros[i]["semestre"] === "IV" ? `selected` : ""
+                }>IV</option>
 
-        <option value="V"${
-            registros[i]["semestre"] === "V" ? `selected` : ""
-        }>V</option>
+                    <option value="V"${
+                        registros[i]["semestre"] === "V" ? `selected` : ""
+                    }>V</option>
 
-        <option value="VI"${
-            registros[i]["semestre"] === "VI" ? `selected` : ""
-        }>VI</option>
+                    <option value="VI"${
+                        registros[i]["semestre"] === "VI" ? `selected` : ""
+                    }>VI</option>
 
-       <option value="VII"${
-           registros[i]["semestre"] === "VII" ? `selected` : ""
-       }>VII</option>
+                <option value="VII"${
+                    registros[i]["semestre"] === "VII" ? `selected` : ""
+                }>VII</option>
 
-       <option value="VIII"${
-           registros[i]["semestre"] === "VIII" ? `selected` : ""
-       }>VIII</option>
+                <option value="VIII"${
+                    registros[i]["semestre"] === "VIII" ? `selected` : ""
+                }>VIII</option>
 
-       <option value="IX"${
-           registros[i]["semestre"] === "IX" ? `selected` : ""
-       }>IX</option>
+                <option value="IX"${
+                    registros[i]["semestre"] === "IX" ? `selected` : ""
+                }>IX</option>
 
-       <option value="X"${
-           registros[i]["semestre"] === "X" ? `selected` : ""
-       }>X</option>
-  </select>`
-                : `<select name="tipo_profesor2" id="tipo_profesor2" class="caja">
-      <option value="Planta"${
-          registros[i]["tipo_profesor"] === "Planta" ? `selected` : ""
-      }>Planta</option>
-      <option value="Catedratico"${
-          registros[i]["tipo_profesor"] === "Catedratico" ? `selected` : ""
-      }>Catedratico</option>
-      <option value="Ocasional"${
-          registros[i]["tipo_profesor"] === "Ocasional" ? `selected` : ""
-      }>Ocasional</option>
-  </select>`
-        }</li>
+                <option value="X"${
+                    registros[i]["semestre"] === "X" ? `selected` : ""
+                }>X</option>
+            </select>
+        </li>
+        <li id="edit_tipo_profesor" class="text-m - font-bold text-slate-600 ${registros[i]["tipo_persona"] != undefined ? "hidden" : ""}" >
+            Tipo profesor: 
+            <select name="tipo_profesor2" id="tipo_profesor2" class="caja">
+                <option value="Planta"${
+                    registros[i]["tipo_profesor"] === "Planta" ? `selected` : ""
+                }>Planta</option>
+                <option value="Catedratico"${
+                    registros[i]["tipo_profesor"] === "Catedratico" ? `selected` : ""
+                }>Catedratico</option>
+                <option value="Ocasional"${
+                    registros[i]["tipo_profesor"] === "Ocasional" ? `selected` : ""
+                }>Ocasional</option>
+            </select>
+        </li>
 
     </ul>
     `;
@@ -431,6 +432,17 @@ Editar = (i) => {
         toggleButton();
     });
 
+    tipo_persona3.addEventListener("click", (e) => {
+        edit_semestre.classList.remove("hidden")
+        edit_tipo_profesor.classList.add("hidden")
+    });
+
+    tipo_persona4.addEventListener("click", (e) => {
+        edit_tipo_profesor.classList.remove("hidden")
+        edit_semestre.classList.add("hidden")
+    });
+
+
     btnEditar.addEventListener("click", (e) => {
 
       if(tipo_persona3.value === "estudiante") {
@@ -449,7 +461,7 @@ Editar = (i) => {
         registros[i].nombre = nombre2.value;
         registros[i].presupuesto = presupuesto2.value;
         registros[i].responsable = responsable2.value;
-        registros[i].tipo_persona2 = tipo_persona3.value;  
+        registros[i].tipo_persona2 = tipo_persona4.value;  
         registros[i].tipo = tipo2.value;
         registros[i].tipo_profesor2 = tipo_profesor2.value;
       }
