@@ -444,29 +444,32 @@ Editar = (i) => {
 
 
     btnEditar.addEventListener("click", (e) => {
-
-      if(tipo_persona3.value === "estudiante") {
-        registros[i].codigo = codigo2.value;
-        registros[i].fecha_fin = fecha_fin2.value;
-        registros[i].fecha_ini = fecha_ini2.value;
-        registros[i].nombre = nombre2.value;
-        registros[i].presupuesto = presupuesto2.value;
-        registros[i].responsable = responsable2.value;
-        registros[i].tipo_persona = tipo_persona3.value;
-        registros[i].tipo = tipo2.value; 
-      } else {
-        registros[i].codigo = codigo2.value;
-        registros[i].fecha_fin = fecha_fin2.value;
-        registros[i].fecha_ini = fecha_ini2.value;
-        registros[i].nombre = nombre2.value;
-        registros[i].presupuesto = presupuesto2.value;
-        registros[i].responsable = responsable2.value;
-        registros[i].tipo_persona2 = tipo_persona4.value;  
-        registros[i].tipo = tipo2.value;
-        registros[i].tipo_profesor2 = tipo_profesor2.value;
-      }
-
-      ListarRegistros();
+        if(tipo_persona3.checked) {
+            registros[i] = {
+                codigo: codigo2.value,
+                nombre: fecha_fin2.value,
+                tipo: tipo2.value,
+                fecha_ini: fecha_ini2.value,
+                fecha_fin: fecha_fin2.value,
+                responsable: responsable2.value,
+                presupuesto: responsable2.value,
+                tipo_persona: tipo_persona3.value,
+                semestre: semestre2.value,
+            }
+        } else {
+            registros[i] = {
+                codigo: codigo2.value,
+                nombre: fecha_fin2.value,
+                tipo: tipo2.value,
+                fecha_ini: fecha_ini2.value,
+                fecha_fin: fecha_fin2.value,
+                responsable: responsable2.value,
+                presupuesto: responsable2.value,
+                tipo_persona2: tipo_persona4.value,
+                tipo_profesor: tipo_profesor2.value,
+            }
+        }
+        ListarRegistros();
     });
 
     function toggleButton() {
